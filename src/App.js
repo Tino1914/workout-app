@@ -9,19 +9,20 @@ import {
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './config/theme.config';
 
-import Signin from './pages/Signin';
-
+import SignIn from './pages/Signin';
+import SignUp from './pages/SignUp';
 function App() {
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <Switch>
           <Route exact path="/">
-            <Signin />
+            <SignIn />
           </Route>
           <Route path="/sign-up">
-            Signup
+            <SignUp />
           </Route>
+        
         </Switch>
       </ThemeProvider>
     </Router>
