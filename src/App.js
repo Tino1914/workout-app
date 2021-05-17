@@ -11,6 +11,7 @@ import theme from './config/theme.config';
 
 import SignIn from './pages/Signin';
 import SignUp from './pages/SignUp';
+import Dashboard from './pages/Dashboard';
 function App() {
   return (
     <Router>
@@ -22,6 +23,9 @@ function App() {
           <Route path="/sign-up">
             <SignUp />
           </Route>
+          <Route path="/dashboard">
+       <Dashboard />
+       </Route>
         
         </Switch>
       </ThemeProvider>
