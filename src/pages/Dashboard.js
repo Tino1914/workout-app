@@ -28,6 +28,7 @@ import {
     Route,
     useRouteMatch
   } from "react-router-dom";
+import Sidebar from '../components/Sidebar';
 
 
 
@@ -35,7 +36,12 @@ import {
 
 function Dashboard(props) {
     let match = useRouteMatch();
-  
+    const signOut = () => {
+      props.firebase.auth.signOut();
+      props.history.push("/");
+      }
+    
+   
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const handleDrawerOpen = () => {
@@ -73,8 +79,8 @@ function Dashboard(props) {
               </Toolbar>
               </AppBar>
   
-              Sidebar
-  
+              <Sidebar signOut={signOut} open={open} handleDrawerClose={handleDrawerClose} />
+
               <main className={classes.content, !open ? classes.contentClosed : classes.appBarShift }>
               <div className={classes.appBarSpacer} />
               <Container maxWidth="xl" className={classes.container}>
