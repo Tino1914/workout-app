@@ -23,12 +23,16 @@ import {  withRouter } from 'react-router-dom';
 import Copyright from '../components/Copyright';
 import useStyles from '../config/theme.dashboard';
 
+
 import {
     Switch,
     Route,
     useRouteMatch
   } from "react-router-dom";
 import Sidebar from '../components/Sidebar';
+import Calendar  from '../components/Calendar';
+
+import { AuthUserContext, withAuthentication } from '../components/Session';
 
 
 
@@ -52,6 +56,9 @@ function Dashboard(props) {
     };
   
     return (
+      <AuthUserContext.Consumer>
+      {
+      authUser => authUser ? (
           <div className={classes.root}>
               <CssBaseline />
               <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
@@ -78,13 +85,20 @@ function Dashboard(props) {
                   </IconButton>
               </Toolbar>
               </AppBar>
-  
-              <Sidebar signOut={signOut} open={open} handleDrawerClose={handleDrawerClose} />
+
+              <Sidebar 
+                  signOut={signOut} 
+                  open={open} 
+                  handleDrawerClose={handleDrawerClose} 
+              />
 
               <main className={classes.content, !open ? classes.contentClosed : classes.appBarShift }>
               <div className={classes.appBarSpacer} />
               <Container maxWidth="xl" className={classes.container}>
-                  Calendar
+                  <Calendar 
+                      firebase={props.firebase}
+                      authUser={authUser}
+                  />
                   <Box pt={4}>
                       <Copyright />
                   </Box>
@@ -92,7 +106,12 @@ function Dashboard(props) {
               </main>
               
           </div>
+          ) : (
+          <p>Not authorized.</p>
+       )
+    }
+  </AuthUserContext.Consumer>
     );
   };
   
-  export default withRouter(withFirebase(Dashboard));
+  export default withRouter(withAuthentication(Dashboard));
