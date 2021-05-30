@@ -2,7 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: 'Nanum Gothic',
+    fontFamily: '',
   },
   palette: {
       primary: {

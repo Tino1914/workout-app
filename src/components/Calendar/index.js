@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 
-
 import Grid from '@material-ui/core/Grid';
 
 import CalendarBody from './calendar-body';
@@ -29,6 +28,7 @@ function Calendar(props) {
     }
 
     const toggleMonthSelect = () => setShowMonthTable(!showMonthTable);
+    const firstDayOfMonth = () => moment(dateObject).startOf("month").format("d");
 
     return (
         <Grid container spacing={3}>
@@ -47,5 +47,4 @@ function Calendar(props) {
         </Grid>
     )
 };
-
 export default Calendar;
